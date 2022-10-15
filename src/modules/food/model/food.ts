@@ -3,7 +3,7 @@ import { CategoryFood } from "./category"
 import { v4 as uuidv4 } from "uuid"
 
 @Entity("foods")
-class SpecificationFood {
+class Food {
     @PrimaryColumn()
     id?: string;
 
@@ -31,4 +31,4 @@ class SpecificationFood {
     
 }
 
-export { SpecificationFood }
+export { Food }
