@@ -1,4 +1,3 @@
-
 import { UsersRepository } from "../../repositories/implemantations/userRepository";
 import { ListUsersController } from "./listUserController";
 import { ListUsersUseCase } from "./listUserUseCase";
@@ -10,5 +9,5 @@ export default (): ListUsersController=> {
 
     const listAllUsersController = new ListUsersController(listAllUsersUseCase);
 
-return listAllUsersController 
+    return listAllUsersController 
 };

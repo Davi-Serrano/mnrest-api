@@ -13,7 +13,7 @@ const createUserController = new CreateUserController()
 
 
 
-usersRoutes.post("/", ensureAdmin,createUserController.handle);
+usersRoutes.post("/", createUserController.handle);
 
 usersRoutes.get("/", ensureAuthentication, ensureAdmin,(req, res)=>{
     return listAllUsersController().handle(req, res);

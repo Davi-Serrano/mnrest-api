@@ -22,7 +22,7 @@ class User{
 
         if(!this.id){
             this.id = uuidv4();
-            this.admin = false;
+            this.admin = true;
 
         }
     }
