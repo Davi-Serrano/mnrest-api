@@ -5,7 +5,7 @@ import { IImageFoodRepository } from "../IImageFoodRepository";
 class ImageFoodRepository implements IImageFoodRepository{
     private repository: Repository<ImageFood>;
     constructor(){
-        this.repository =  getRepository(ImageFood);
+        this.repository = getRepository(ImageFood);
     }
 
     async create(image_name: string, food_id: string){

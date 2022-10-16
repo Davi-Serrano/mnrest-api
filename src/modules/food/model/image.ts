@@ -1,5 +1,4 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
-import { CategoryFood } from "./category"
 import { v4 as uuidv4 } from "uuid"
 
 @Entity("foods_image")
