@@ -15,7 +15,7 @@ class UploadImageFoodUseCase{
 
     async execute({image_name, food_id}: IRequest) {
         image_name.map(async (image) => {
-            await this.imageFoodRepository.create(food_id, image)
+            await this.imageFoodRepository.create(image, food_id)
         });
     }
 }

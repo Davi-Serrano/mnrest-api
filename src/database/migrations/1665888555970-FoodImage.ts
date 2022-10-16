@@ -18,7 +18,7 @@ export class FoodImage1665888555970 implements MigrationInterface {
                     },
                     {
                         name: "food_id",
-                        type: "varchar",
+                        type: "uuid",
                     },
                 ],
                 foreignKeys: [
