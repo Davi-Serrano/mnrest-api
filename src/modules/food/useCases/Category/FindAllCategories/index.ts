@@ -5,9 +5,9 @@ import { FindAllCategoriesUseCase } from "./findAllCategoriesUseCase";
 export default (): FindAllCategoriesController => {
     const categoryrReposiotry = new CategoryRepository()
 
-    const findAllCategoriesRepositories = new FindAllCategoriesUseCase(categoryrReposiotry)
+    const findAllCategoriesUseCase = new FindAllCategoriesUseCase(categoryrReposiotry)
 
-    const findAllCategoriesController = new FindAllCategoriesController(findAllCategoriesRepositories);
+    const findAllCategoriesController = new FindAllCategoriesController(findAllCategoriesUseCase);
 
     return findAllCategoriesController 
 };

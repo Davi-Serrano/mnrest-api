@@ -7,7 +7,6 @@ class FindAllCategoriesUseCase {
         const allCategories = await this.categoryRepository.findAll();
 
         return allCategories;
-
     };
 }
 

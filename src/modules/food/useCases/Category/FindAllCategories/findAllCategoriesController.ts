@@ -7,7 +7,7 @@ class FindAllCategoriesController {
     async handle(req: Request, res: Response){
         const all = await this.findAllCategoriesUseCase.execute();
 
-        return res.setHeader("token", "aceppted").json(all)
+        return res.setHeader("token", "accepted").json(all)
     }
 };
 

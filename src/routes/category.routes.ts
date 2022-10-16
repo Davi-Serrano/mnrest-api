@@ -5,9 +5,6 @@ import { CreateCategoryController } from "../modules/food/useCases/Category/Crea
 
 import  findAllCategoriesController  from "../modules/food/useCases/Category/FindAllCategories";
 
-
-
-
 const categoriesRoutes = Router()
 
 const createCategoryController = new CreateCategoryController();

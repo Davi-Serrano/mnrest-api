@@ -26,6 +26,12 @@ class FoodRepository implements IFoodRepository{
         return food;
     }
 
+    async findAll(): Promise<Food[]> {
+        const all = await this.repository.find();
+
+        return all
+    }
+
 }
 
 export { FoodRepository };
