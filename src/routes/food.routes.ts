@@ -8,6 +8,6 @@ const foodRoutes = Router()
 
 const createFoodController = new CreateFoodController();
 
-foodRoutes.post("/", ensureAuthentication, ensureAdmin, createFoodController.handle);
+foodRoutes.post("/", createFoodController.handle);
 
 export { foodRoutes };
