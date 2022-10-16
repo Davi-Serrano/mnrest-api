@@ -7,13 +7,13 @@ let createUserUseCase: CreateUserUseCase;
 let deleteUserUseCase: DeleteUserUseCase;
 let usersRepositoryInMemory : UsersRepositoryInMemory;
 
-describe("Create a User", ()=>{
+describe("Delete a User", ()=>{
     beforeEach(()=>{
         usersRepositoryInMemory = new UsersRepositoryInMemory();
         createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
     });
 
-    it("sould be able to create a new User", async ()=>{
+    it("sould be able to delete a User", async ()=>{
         const user = {
             name: "User is a teste",
             password: "Is_a_test",
