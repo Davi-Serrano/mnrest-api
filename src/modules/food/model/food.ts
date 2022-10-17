@@ -23,6 +23,9 @@ class Food {
     @Column()
     price!: string;
 
+    @Column()
+    image_food!: string;
+
     constructor(){
         if(!this.id){
             this.id = uuidv4()

@@ -1,23 +1,31 @@
 import { inject, injectable } from "tsyringe";
-import { IImageFoodRepository } from "../../../repositories/IImageFoodRepository";
+import { deleteFlie } from "../../../../../utils/file";
+import { IFoodRepository } from "../../../repositories/IFoodRepository";
+
 
 interface IRequest {
     food_id: string;
-    image_name: string[];
+    image_file: string;
 }
 
 @injectable()
 class UploadImageFoodUseCase{
     constructor(
-        @inject("ImageFoodRepository")
-        private imageFoodRepository: IImageFoodRepository
+        @inject("FoodRepository")
+        private foodRepository: IFoodRepository
     ){}
 
-    async execute({image_name, food_id}: IRequest) {
-        image_name.map(async (image) => {
-            await this.imageFoodRepository.create(image, food_id)
-        });
+    async execute({image_file, food_id}: IRequest) {
+        const food = await this.foodRepository.findById(food_id);
+
+        if(food.image_food){
+            await deleteFlie(`./tmp/foods/${food.image_food}`);
+        }
+
+        food.image_food = image_file;
+
+        await this.foodRepository.create(food);
     }
-}
+};
 
 export { UploadImageFoodUseCase }

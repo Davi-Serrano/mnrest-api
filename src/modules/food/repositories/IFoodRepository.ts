@@ -5,12 +5,15 @@ interface IFoodDTO {
     price: string;
     description: string;
     category_id: string;
+    image_food?: string;
+    id?: string;
 }
 
 
 interface IFoodRepository {
-    create({ name, description, price, category_id}: IFoodDTO): Promise<void>;
+    create(data: IFoodDTO): Promise<void>;
     findByName(name: string): Promise<Food>;
+    findById(id: string): Promise<Food>;
     findAll():Promise<Food[]>
 }
 

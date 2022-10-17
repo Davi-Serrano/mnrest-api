@@ -17,9 +17,10 @@ const uploadImage = multer(uploadConfig.upload("./tmp/foods"));
 
 foodRoutes.post("/", createFoodController.handle);
 
-foodRoutes.post(
-    "/image/:id", 
-    uploadImage.array("images") ,
+
+foodRoutes.patch(
+    "/image", 
+    uploadImage.single("foods") ,
     uploadImageFoodController.handle
 );
 

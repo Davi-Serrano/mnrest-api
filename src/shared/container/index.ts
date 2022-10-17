@@ -25,7 +25,3 @@ container.registerSingleton<IFoodRepository>(
     FoodRepository
 )
 
-container.registerSingleton<IImageFoodRepository>(
-    "ImageFoodRepository", 
-    ImageFoodRepository
-)

@@ -25,12 +25,12 @@ export async function ensureAuthentication(req: Request, res: Response, next: Ne
 
 
         if(!user){
-            throw new AppError("User does not Exists!")
+            throw new AppError("User does not Exists!", 401)
         }
 
         next()
     }catch{
-        throw new AppError("Invalid Token");
+        throw new AppError("Invalid Token", 401);
     }
 
 
