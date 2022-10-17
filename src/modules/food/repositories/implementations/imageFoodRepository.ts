@@ -16,6 +16,14 @@ class ImageFoodRepository implements IImageFoodRepository{
 
         await this.repository.save(image);
     }
+
+    async findById(id:string){
+
+        const imageFood = await this.repository.findOne({id}) as ImageFood;
+
+        return imageFood
+
+    }
 };
 
 export { ImageFoodRepository }
