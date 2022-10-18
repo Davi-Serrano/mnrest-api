@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../../erros/appError";
 import { deleteFlie } from "../../../../../utils/file";
 import { IFoodRepository } from "../../../repositories/IFoodRepository";
 
@@ -18,6 +19,11 @@ class UploadImageFoodUseCase{
     async execute({image_file, food_id}: IRequest) {
         const food = await this.foodRepository.findById(food_id);
 
+        if(!food){
+            throw new AppError("This food don1t exists!");
+        }
+
+
         if(food.image_food){
             await deleteFlie(`./tmp/foods/${food.image_food}`);
         }
@@ -28,4 +34,4 @@ class UploadImageFoodUseCase{
     }
 };
 
-export { UploadImageFoodUseCase }
+export { UploadImageFoodUseCase };

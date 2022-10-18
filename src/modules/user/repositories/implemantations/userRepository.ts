@@ -42,10 +42,6 @@ class UsersRepository implements IPostgreSQLDBRepository{
         return user;
     }
 
-    async updateName({name, actualName}: UserUpdateNameDTO){
-
-    }
-
     async deleteUser(user:User){
         await this.repository.delete(user);
     }

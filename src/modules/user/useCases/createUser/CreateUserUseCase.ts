@@ -22,6 +22,10 @@ class CreateUserUseCase{
         if(user){
             throw new AppError("User already Exists!", )
         }
+
+        if(password.length < 4){
+            throw new AppError("short password , min 4 characters!", )
+        }
     
         const passwordHash =  await hash(password, 8)
 

@@ -14,9 +14,8 @@ interface IPostgreSQLDBRepository{
     create({name, password}: UserDTO): Promise<void>;
     getUsers(): Promise<User[]>;
     findById(id: string): Promise<User>;
-    findByName(id: string): Promise<User>;
+    findByName(name: string): Promise<User>;
     deleteUser(user:User): Promise<void>;
-    updateName({name, actualName}: UserUpdateNameDTO): Promise<void>;
 }
 
 export { IPostgreSQLDBRepository, UserUpdateNameDTO, UserDTO }
