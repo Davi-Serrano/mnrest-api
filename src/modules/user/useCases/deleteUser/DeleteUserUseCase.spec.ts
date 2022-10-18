@@ -1,4 +1,5 @@
 import { AppError } from "../../../../erros/appError";
+import { User } from "../../model/user";
 import { UsersRepositoryInMemory } from "../../repositories/in-memory/UsersRepositoryInMemory";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { DeleteUserUseCase } from "./deleteUserUseCase";
@@ -11,12 +12,13 @@ describe("Delete a User", ()=>{
     beforeEach(()=>{
         usersRepositoryInMemory = new UsersRepositoryInMemory();
         createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
+        deleteUserUseCase = new DeleteUserUseCase(usersRepositoryInMemory);
     });
 
-    it("sould be able to delete a User", async ()=>{
+    it("Should be able to delete a User", async ()=>{
         const user = {
-            name: "User is a teste",
-            password: "Is_a_test",
+            name: "jonh Doe",
+            password: "Is_a_test"
         };
         
         await createUserUseCase.execute({
@@ -26,9 +28,30 @@ describe("Delete a User", ()=>{
 
         const userDeleted = await usersRepositoryInMemory.findByName(user.name);
 
-        await usersRepositoryInMemory.deleteUser(userDeleted);
+        await deleteUserUseCase.execute(userDeleted);
 
         expect(user).not.toHaveProperty("id");
+    })
+
+    it("Should not be able to delete a User not exists", async ()=>{
+        
+        expect( async ()=>{
+            const user = {
+                name: "jonh Doe",
+                password: "Is_a_test"
+            };
+    
+            const user2 = {
+                id: "uofjsabfas",
+                name: "jonhatan Doe",
+                password: "Is_a_test",
+            } as User;
+            
+            await createUserUseCase.execute(user);
+    
+            const deleted = await deleteUserUseCase.execute(user2);
+
+        }).rejects.toBeInstanceOf(AppError);
     })
 
   

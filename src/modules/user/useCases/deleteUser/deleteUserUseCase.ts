@@ -8,7 +8,7 @@ class DeleteUserUseCase {
 
     async execute(user: User){
 
-        const {name } = user 
+        const { name } = user 
 
         const userExists = await this.userRepository.findByName(name);
 
