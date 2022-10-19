@@ -1,8 +1,9 @@
 import { inject, injectable } from "tsyringe";
-import { FoodRepository } from "../../../repositories/implementations/foodRepository";
+import { IFoodRepository } from "../../../repositories/IFoodRepository";
+
 
 class FindAllFoodsUseCase{
-    constructor(  private foodRepository: FoodRepository){};
+    constructor(  private foodRepository: IFoodRepository){};
 
     async execute(){
         const allFoods = await this.foodRepository.findAll();

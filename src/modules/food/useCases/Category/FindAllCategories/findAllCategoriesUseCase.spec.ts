@@ -9,7 +9,7 @@ let createCategoryUseCase: CreateCategoryUseCase;
 let findAllCategoriesUseCase: FindAllCategoriesUseCase
 ;
 
-describe("Delete a User", ()=>{
+describe("Find all categories", ()=>{
     beforeEach(()=>{
         categoriesRepositoryInMemory = new CategoryRepositoryInMemory();
         createCategoryUseCase = new CreateCategoryUseCase(categoriesRepositoryInMemory);
@@ -18,7 +18,7 @@ describe("Delete a User", ()=>{
     
     });
 
-    it("Should be able to list all users", async ()=>{
+    it("Should be able to list all categories", async ()=>{
 
         const category = {
             name: "jonhatan Doe"
