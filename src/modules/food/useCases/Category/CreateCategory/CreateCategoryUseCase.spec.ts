@@ -1,14 +1,15 @@
-import { AppError } from "../../../../erros/appError";
-import { CategoriesRepositoryInMemory } from "../../repositories/in-memory/CategoriesRepositoryInMemory";
-import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
-let createUserUseCase: CreateUserUseCase;
-let usersRepositoryInMemory : UsersRepositoryInMemory;
+import { AppError } from "../../../../../erros/appError";
+import { CategoryRepositoryInMemory } from "../../../repositories/in-memory/CategoryRepositoryInMemory";
+import { CreateCategoryUseCase } from "./createCategoryUseCase";
 
-describe("Create a User", ()=>{
+let categoriesRepositoryInMemory : CategoryRepositoryInMemory;
+let createCategoryUseCase: CreateCategoryUseCase;
+
+describe("Create a category", ()=>{
     beforeEach(()=>{
-        categoriesRepositoryInMemory = new CategoriesRepositoryInMemory();
-        createCategoryUseCase = new CreateUserUseCase(usersRepositoryInMemory);
+        categoriesRepositoryInMemory = new CategoryRepositoryInMemory();
+        createCategoryUseCase = new CreateCategoryUseCase(categoriesRepositoryInMemory);
     });
 
     it("Should be able to create a new Category", async ()=>{
@@ -16,9 +17,9 @@ describe("Create a User", ()=>{
             name: "Salgado",
         };
         
-        await createUserUseCase.execute(category);
+        await createCategoryUseCase.execute(category.name);
 
-        const categoryCreated = await usersRepositoryInMemory.findByName(category.name);
+        const categoryCreated = await categoriesRepositoryInMemory.findByName(category.name);
 
         expect(categoryCreated).toHaveProperty("id");
     })
@@ -29,8 +30,8 @@ describe("Create a User", ()=>{
                 name: "Salgado",
             };
             
-            await createUserUseCase.execute(category);
-            await createUserUseCase.execute(category);
+            await createCategoryUseCase.execute(category.name);
+            await createCategoryUseCase.execute(category.name);
            
         }).rejects.toBeInstanceOf(AppError);
         

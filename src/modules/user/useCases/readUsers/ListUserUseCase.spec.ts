@@ -1,13 +1,18 @@
 import { UsersRepositoryInMemory } from "../../repositories/in-memory/UsersRepositoryInMemory";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
+import { ListUsersUseCase } from "./listUserUseCase";
 
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let createUserUseCase: CreateUserUseCase;
+let listUsersUseCase: ListUsersUseCase
+;
 
 describe("Delete a User", ()=>{
     beforeEach(()=>{
         usersRepositoryInMemory = new UsersRepositoryInMemory();
         createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
+        listUsersUseCase = new ListUsersUseCase(usersRepositoryInMemory);
+        
     
     });
 
@@ -26,9 +31,9 @@ describe("Delete a User", ()=>{
         await createUserUseCase.execute(user)
         await createUserUseCase.execute(user2)
 
-        const userCreated = await usersRepositoryInMemory.getUsers();
+        const allUsers = await listUsersUseCase.execute();
        
-        expect(userCreated).toHaveLength(2);
+        expect(allUsers).toHaveLength(2);
     })
 
   

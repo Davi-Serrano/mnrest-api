@@ -23,14 +23,20 @@ class CategoryRepository implements ICategoryRepository {
         return all
     }
 
-    async findByName(name: string): Promise<CategoryFood>{
-        const user = await this.repository.findOne({name}) as CategoryFood;
+    async findById(id: string): Promise<CategoryFood>{
+        const category = await this.repository.findOne({id}) as CategoryFood;
         
-        return user;
+        return category;
     }
 
-    async delete(name: string){0
-        await this.repository.delete(name);
+    async findByName(name: string): Promise<CategoryFood>{
+        const category = await this.repository.findOne({name}) as CategoryFood;
+        
+        return category;
+    }
+
+    async delete(category: CategoryFood){0
+        await this.repository.delete(category.name);
     }
 }
 

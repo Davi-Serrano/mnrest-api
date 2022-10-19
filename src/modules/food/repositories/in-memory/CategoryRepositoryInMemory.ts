@@ -1,4 +1,5 @@
-import { CategoryFood } from "../../model/Category";
+
+import { CategoryFood } from "../../model/category";
 import { ICategoryRepository } from "../ICategoryRepository";
 
 class CategoryRepositoryInMemory implements ICategoryRepository {
@@ -23,7 +24,7 @@ class CategoryRepositoryInMemory implements ICategoryRepository {
     async findById(id: string): Promise<CategoryFood> {
         const category = this.categories.find((category)=> category.id === id ) as CategoryFood;
 
-        return user;
+        return category;
     }
 
     async findByName(name: string): Promise<CategoryFood> {
@@ -33,7 +34,7 @@ class CategoryRepositoryInMemory implements ICategoryRepository {
     }
 
     async delete(category: CategoryFood): Promise<void> {
-        const categoryWillBeDeleted = this.categories.indexOf(user);
+        const categoryWillBeDeleted = this.categories.indexOf(category);
 
         this.categories.splice(categoryWillBeDeleted, 1);
     }
@@ -41,4 +42,4 @@ class CategoryRepositoryInMemory implements ICategoryRepository {
 
 }
 
-export { UsersRepositoryInMemory }
+export { CategoryRepositoryInMemory }
