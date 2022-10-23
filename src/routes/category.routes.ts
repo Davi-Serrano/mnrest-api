@@ -9,9 +9,9 @@ const categoriesRoutes = Router()
 
 const createCategoryController = new CreateCategoryController();
 
-categoriesRoutes.post("/", ensureAuthentication, ensureAdmin, createCategoryController.handle);
+categoriesRoutes.post("/", createCategoryController.handle);
 
-categoriesRoutes.get("/", ensureAuthentication, ensureAdmin, (req, res)=>{
+categoriesRoutes.get("/", (req, res)=>{
     return findAllCategoriesController().handle(req, res);
  });
 
