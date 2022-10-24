@@ -3,7 +3,7 @@ import { UserToken } from "../../model/userTokens";
 import { ICreateUserTokenDTO, IUsersRefreshToken } from "../IUserRefreshToken";
 
 
-class UsersTokenRepository implements IUsersRefreshToken {
+class UsersRefreshTokenRepository implements IUsersRefreshToken {
     private repository: Repository<UserToken>;
 
     constructor(){
@@ -25,4 +25,4 @@ class UsersTokenRepository implements IUsersRefreshToken {
 
 }
 
-export { UsersTokenRepository };
+export { UsersRefreshTokenRepository };

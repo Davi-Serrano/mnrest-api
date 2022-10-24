@@ -1,10 +1,19 @@
 import { container } from "tsyringe"
-import { ICategoryRepository } from "../../modules/food/repositories/ICategoryRepository"
-import { IFoodRepository } from "../../modules/food/repositories/IFoodRepository"
-import { CategoryRepository } from "../../modules/food/repositories/implementations/categoryRepository"
-import { FoodRepository } from "../../modules/food/repositories/implementations/foodRepository"
-import { UsersRepository } from "../../modules/user/repositories/implemantations/userRepository"
+
 import { IPostgreSQLDBRepository } from "../../modules/user/repositories/IPostgreSQLDBRepository"
+import { UsersRepository } from "../../modules/user/repositories/implemantations/userRepository"
+
+import { ICategoryRepository } from "../../modules/food/repositories/ICategoryRepository"
+import { CategoryRepository } from "../../modules/food/repositories/implementations/categoryRepository"
+
+import { IFoodRepository } from "../../modules/food/repositories/IFoodRepository"
+import { FoodRepository } from "../../modules/food/repositories/implementations/foodRepository"
+
+import { UsersRefreshTokenRepository } from "../../modules/user/repositories/implemantations/userTokenRepository"
+import { IUsersRefreshToken } from "../../modules/user/repositories/IUserRefreshToken"
+
+import { IDateProvider } from "../DateProvider/IDateProiver"
+import { DayJsProvider } from "../DateProvider/DayJsDateProvider"
 
 
 
@@ -23,3 +32,12 @@ container.registerSingleton<IFoodRepository>(
     FoodRepository
 )
 
+container.registerSingleton<IUsersRefreshToken>(
+    "UsersRefreshTokenRepository", 
+    UsersRefreshTokenRepository
+)
+
+container.registerSingleton<IDateProvider>(
+    "DayJsProvider", 
+    DayJsProvider
+)

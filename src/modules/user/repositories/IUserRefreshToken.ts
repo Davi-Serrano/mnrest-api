@@ -1,8 +1,8 @@
 import { UserToken } from "../model/userTokens";
 
 interface ICreateUserTokenDTO{
-    user_id: string;
-    expires_date: string;
+    user_id: string | undefined;
+    expires_date: Date;
     refresh_token: string;
 }
 

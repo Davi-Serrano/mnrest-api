@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn 
 import { v4 as uuidv4} from "uuid"
 import { User } from "./user";
 
-@Entity("users_token")
+@Entity("users_tokens") 
 class UserToken {
 
     @PrimaryColumn()
@@ -11,15 +11,17 @@ class UserToken {
     @Column()
     refresh_token!: string;
 
-    @ManyToOne( ()=> User)
-    @JoinColumn({name: "user_id"})
+   @Column()
     user_id!: string;
 
-    @Column()
-    expires_date!: string;
+    @ManyToOne( ()=> User)
+    @JoinColumn({name: "user_id"})
+    user!: User
 
-    @CreateDateColumn()
-    created_at!: Date;
+    @Column()
+    expires_date!: Date;
+
+
 
     constructor(){
         if(!this.id){
