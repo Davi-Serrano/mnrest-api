@@ -1,7 +1,9 @@
 import { Request, Response, NextFunction} from "express"
 import { verify } from "jsonwebtoken";
+import auth from "../config/auth";
 import { AppError } from "../erros/appError";
 import { UsersRepository } from "../modules/user/repositories/implemantations/userRepository";
+import { UsersRefreshTokenRepository } from "../modules/user/repositories/implemantations/userTokenRepository";
 
 interface IPayLoad{
     sub: string;
@@ -10,6 +12,7 @@ interface IPayLoad{
 export async function ensureAuthentication(req: Request, res: Response, next: NextFunction) {
     
     const authHeader = req.headers.authorization;
+    const userTokenRepository = new UsersRefreshTokenRepository();
 
     if(!authHeader){
         throw new AppError("Token Missing");
@@ -18,10 +21,11 @@ export async function ensureAuthentication(req: Request, res: Response, next: Ne
     const [, token] = authHeader.split(" ");
 
     try{
-        const { sub: user_id } = verify(token, "ee11cbb19052e40b07aac0ca060c23ee") as IPayLoad;
+        const { sub: user_id } = verify(
+            token, 
+            auth.secret_refresh_token) as IPayLoad;
         
-        const userRepository = new UsersRepository();
-        const user = await userRepository.findById(user_id)
+        const user = await userTokenRepository.findByUserIdAndRefreshToken(user_id, token);
 
 
         if(!user){
