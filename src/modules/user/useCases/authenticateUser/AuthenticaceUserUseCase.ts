@@ -14,7 +14,7 @@ import { AppError } from "../../../../erros/appError";
 interface IRequest{
     name: string;
     password: string;
-}
+};
 
 interface IResponse {
     user:{
@@ -22,7 +22,7 @@ interface IResponse {
     };
     token: string;
     refresh_token: string
-}
+};
 
 @injectable()
 class AuthenticaceUserUseCase{
@@ -33,12 +33,11 @@ class AuthenticaceUserUseCase{
         private userTokenRepository: IUsersRefreshToken,
         @inject("DayJsProvider")
         private dayJsProvider: IDateProvider
-    ){}
+    ){};
 
     async execute({name, password}: IRequest): Promise<IResponse>{
-
         const user = await this.userRepository.findByName(name);
-        const { secret_refresh_token, secret_token, expires_in_token, expires_in_refresh_token, expires_refresh_token_days } = auth
+        const { secret_refresh_token, secret_token, expires_in_token, expires_in_refresh_token, expires_refresh_token_days } = auth;
 
         if(!user){
             throw new AppError("Email or password incorrect");
@@ -48,7 +47,7 @@ class AuthenticaceUserUseCase{
         
         if(!passwordMatch){
             throw new AppError("Email or password incorrect");
-        }
+        };
 
 
         const token = sign({}, secret_token ,{
@@ -59,15 +58,15 @@ class AuthenticaceUserUseCase{
         const refresh_token = sign({ name }, secret_refresh_token, {
             subject: user.id,
             expiresIn: expires_in_refresh_token
-        })
+        });
 
-        const refresh_token_expires_date = this.dayJsProvider.addDays(expires_refresh_token_days)
+        const refresh_token_expires_date = this.dayJsProvider.addDays(expires_refresh_token_days);
 
         await this.userTokenRepository.create({
             user_id: user.id,
             refresh_token,
             expires_date: refresh_token_expires_date
-        })
+        });
 
         const tokenReturn: IResponse = {
             token,
@@ -75,11 +74,11 @@ class AuthenticaceUserUseCase{
             user: {
                 name
             }
-        }
+        };
 
-        return tokenReturn
-    }
-}
+        return tokenReturn;
+    };
+};
 
 
-    export  { AuthenticaceUserUseCase }
+    export  { AuthenticaceUserUseCase };
