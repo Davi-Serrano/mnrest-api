@@ -10,7 +10,7 @@ import { IFoodRepository } from "../../modules/food/repositories/IFoodRepository
 import { FoodRepository } from "../../modules/food/repositories/implementations/foodRepository"
 
 import { UsersRefreshTokenRepository } from "../../modules/user/repositories/implemantations/userTokenRepository"
-import { IUsersRefreshToken } from "../../modules/user/repositories/IUserRefreshToken"
+import { IUsersTokenRepository } from "../../modules/user/repositories/IUserRefreshToken"
 
 import { IDateProvider } from "../DateProvider/IDateProiver"
 import { DayJsProvider } from "../DateProvider/DayJsDateProvider"
@@ -32,7 +32,7 @@ container.registerSingleton<IFoodRepository>(
     FoodRepository
 )
 
-container.registerSingleton<IUsersRefreshToken>(
+container.registerSingleton<IUsersTokenRepository>(
     "UsersRefreshTokenRepository", 
     UsersRefreshTokenRepository
 )

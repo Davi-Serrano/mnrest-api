@@ -3,7 +3,7 @@ import { inject, injectable } from "tsyringe";
 import auth from "../../../../config/auth";
 import { AppError } from "../../../../erros/appError";
 import { IDateProvider } from "../../../../shared/DateProvider/IDateProiver";
-import { IUsersRefreshToken } from "../../repositories/IUserRefreshToken";
+import { IUsersTokenRepository } from "../../repositories/IUserRefreshToken";
 
 interface  IPayload {
     sub:  string;
@@ -15,7 +15,7 @@ class RefreshTokenUseCase{
 
     constructor(
         @inject("UsersRefreshTokenRepository")
-        private usersTokenRepository: IUsersRefreshToken,
+        private usersTokenRepository: IUsersTokenRepository,
         @inject("DayJsProvider")
         private dayJsProvider: IDateProvider
     ){};
