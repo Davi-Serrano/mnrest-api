@@ -6,7 +6,7 @@ import auth from "../../../../config/auth";
 
 import { IPostgreSQLDBRepository } from "../../repositories/IPostgreSQLDBRepository";
 import { IDateProvider } from "../../../../shared/DateProvider/IDateProiver";
-import { IUsersRefreshToken } from "../../repositories/IUserRefreshToken";
+import { IUsersTokenRepository } from "../../repositories/IUserRefreshToken";
 
 import { AppError } from "../../../../erros/appError";
 
@@ -30,7 +30,7 @@ class AuthenticaceUserUseCase{
         @inject("UsersRepository")
         private userRepository: IPostgreSQLDBRepository,
         @inject("UsersRefreshTokenRepository")
-        private userTokenRepository: IUsersRefreshToken,
+        private userTokenRepository: IUsersTokenRepository,
         @inject("DayJsProvider")
         private dayJsProvider: IDateProvider
     ){};

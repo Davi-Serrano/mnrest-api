@@ -1,9 +1,9 @@
 import { getRepository, Repository } from "typeorm";
 import { UserToken } from "../../model/userTokens";
-import { ICreateUserTokenDTO, IUsersRefreshToken } from "../IUserRefreshToken";
+import { ICreateUserTokenDTO, IUsersTokenRepository } from "../IUserRefreshToken";
 
 
-class UsersRefreshTokenRepository implements IUsersRefreshToken {
+class UsersRefreshTokenRepository implements IUsersTokenRepository {
     private repository: Repository<UserToken>;
 
     constructor(){
@@ -24,13 +24,21 @@ class UsersRefreshTokenRepository implements IUsersRefreshToken {
     };
 
     async findByUserIdAndRefreshToken(user_id: string, refresh_token: string): Promise<UserToken> {
-        const usersTokens = await this.repository.findOne({
+        const userTokens = await this.repository.findOne({
             user_id,
             refresh_token
         }) as UserToken ;
 
-        return usersTokens;
+        return userTokens;
     };
+
+    async findByByRefreshToken(refresh_token: string): Promise<UserToken>{
+        const userTokens = await this.repository.findOne({
+            refresh_token
+        }) as UserToken ;
+
+        return userTokens
+    }
 
     async deleteById(id: string): Promise<void> {
         await this.repository.delete(id)

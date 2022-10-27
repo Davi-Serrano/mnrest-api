@@ -6,10 +6,11 @@ interface ICreateUserTokenDTO{
     refresh_token: string;
 }
 
-interface IUsersRefreshToken {
+interface IUsersTokenRepository {
     create({ user_id, expires_date, refresh_token}: ICreateUserTokenDTO): Promise<UserToken>
     findByUserIdAndRefreshToken(user_id: string, refresh_token: string): Promise<UserToken>
+    findByByRefreshToken(refresh_token: string): Promise<UserToken>
     deleteById(id: string | undefined): Promise<void>
 }
 
-export{ IUsersRefreshToken, ICreateUserTokenDTO};
+export{ IUsersTokenRepository, ICreateUserTokenDTO};
