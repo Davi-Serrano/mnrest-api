@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction} from "express"
+import { Request, Response, NextFunction, request} from "express"
 import { verify } from "jsonwebtoken";
 import auth from "../config/auth";
 import { AppError } from "../erros/appError";
@@ -12,7 +12,6 @@ interface IPayLoad{
 export async function ensureAuthentication(req: Request, res: Response, next: NextFunction) {
     
     const authHeader = req.headers.authorization;
-    const userTokenRepository = new UsersRefreshTokenRepository();
 
     if(!authHeader){
         throw new AppError("Token Missing");
@@ -23,14 +22,12 @@ export async function ensureAuthentication(req: Request, res: Response, next: Ne
     try{
         const { sub: user_id } = verify(
             token, 
-            auth.secret_refresh_token) as IPayLoad;
-        
-        const user = await userTokenRepository.findByUserIdAndRefreshToken(user_id, token);
+            auth.secret_token) as IPayLoad;
 
-
-        if(!user){
-            throw new AppError("User does not Exists!", 401)
+        request.user = {
+            id: user_id
         }
+        
 
         next()
     }catch{
