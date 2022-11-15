@@ -10,6 +10,8 @@ class AuthenticaceUserController {
 
         const token =  await authenticaceUserUseCase.execute({ name, password})
 
+        console.log("alguem logou ");
+
         return res.json(token)
     }
 
