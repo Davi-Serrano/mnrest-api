@@ -5,7 +5,7 @@ interface ICategoryRepository {
     findByName(name: string): Promise<CategoryFood>
     findById(id: string): Promise<CategoryFood>
     findAll():Promise<CategoryFood[]>
-    delete(category: CategoryFood): Promise<void>;
+    delete(id: string): Promise<void>;
 }
 
 export { ICategoryRepository }

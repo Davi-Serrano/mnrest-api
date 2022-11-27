@@ -35,8 +35,8 @@ class CategoryRepository implements ICategoryRepository {
         return category;
     }
 
-    async delete(category: CategoryFood){0
-        await this.repository.delete(category.name);
+    async delete(id: string){
+        await this.repository.delete(id);
     }
 }
 

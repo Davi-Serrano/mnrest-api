@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { ensureAdmin } from "../middlewares/ensureAdmiin";
+import { ensureAdmin } from "../middlewares/ensureAdmin";
 import { ensureAuthentication } from "../middlewares/ensureAuthentication";
 import  { CreateUserController }  from "../modules/user/useCases/createUser/CreateUserController";
 import  deleteUserController  from "../modules/user/useCases/deleteUser";
