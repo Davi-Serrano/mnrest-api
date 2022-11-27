@@ -15,11 +15,13 @@ const uploadImageFoodController = new UploadImageFoodController();
 
 const uploadImage = multer(uploadConfig.upload("./tmp/foods"));
 
-foodRoutes.post("/", createFoodController.handle);
+foodRoutes.post("/", ensureAuthentication, ensureAdmin,createFoodController.handle);
 
 
 foodRoutes.patch(
     "/image", 
+    ensureAuthentication, 
+    ensureAdmin,
     uploadImage.single("foods") ,
     uploadImageFoodController.handle
 );

@@ -14,11 +14,11 @@ const createUserController = new CreateUserController()
 
 usersRoutes.post("/", createUserController.handle);
 
-usersRoutes.get("/",(req, res)=>{
+usersRoutes.get("/", ensureAuthentication, ensureAdmin,(req, res)=>{
     return listAllUsersController().handle(req, res);
  });
 
- usersRoutes.delete("/", (req, res)=>{
+ usersRoutes.delete("/", ensureAuthentication, ensureAdmin,(req, res)=>{
    return deleteUserController().handle(req, res)
  });
 
