@@ -34,8 +34,6 @@ describe("Find All a food", ()=>{
         await createFoodUseCase.execute(food2)
 
         const allFoods = await findAllFoodsUseCase.execute();
-
-        console.log('allFoods :>> ', allFoods);
        
         expect(allFoods).toHaveLength(2);
     })
