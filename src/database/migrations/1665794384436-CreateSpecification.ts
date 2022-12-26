@@ -36,8 +36,8 @@ export class CreateSpecification1665794384436 implements MigrationInterface {
                         referencedTableName: "categories",
                         referencedColumnNames: ["id"],
                         columnNames: ["category_id"],
-                        onDelete: "SET NULL",
-                        onUpdate: "SET NULL"
+                        onDelete: "CASCADE",
+                        onUpdate: "CASCADE"
                     }
                 ]
             }) 
