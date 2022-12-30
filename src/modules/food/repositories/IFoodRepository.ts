@@ -15,6 +15,7 @@ interface IFoodRepository {
     findByName(name: string): Promise<Food>;
     findById(id: string): Promise<Food>;
     findAll():Promise<Food[]>
+    deleteFood(id:string): Promise<void>;
 }
 
 export { IFoodRepository, IFoodDTO }

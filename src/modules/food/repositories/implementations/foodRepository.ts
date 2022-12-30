@@ -37,9 +37,13 @@ class FoodRepository implements IFoodRepository{
     async findAll(): Promise<Food[]> {
         const all = await this.repository.find();
 
-        return all
+        return all;
     }
 
+    async deleteFood(id: string): Promise<void> {
+        await this.repository.delete(id);
+
+    }
 }
 
 export { FoodRepository };
