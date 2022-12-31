@@ -13,6 +13,7 @@ import  findAllFoodsController from "../modules/food/useCases/Food/FindAllFoods/
 import { UploadImageFoodController } from "../modules/food/useCases/Food/UploadImaegFood/uploadImageFoodController";
 
 import deleteFoodController  from "../modules/food/useCases/Food/DeleteFood/";
+import changePriceController  from "../modules/food/useCases/Food/ChangePrice/";
 
 
 const foodRoutes = Router()
@@ -34,6 +35,10 @@ foodRoutes.patch(
 
 foodRoutes.get("/",  (req, res)=>{
     return findAllFoodsController().handle(req, res);
+ });
+
+ foodRoutes.patch("/price",  (req, res)=>{
+    return changePriceController().handle(req, res);
  });
 
  foodRoutes.delete("/", ensureAdmin, ensureAuthentication, (req, res)=>{

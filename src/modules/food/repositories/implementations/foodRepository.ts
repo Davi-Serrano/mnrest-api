@@ -44,6 +44,12 @@ class FoodRepository implements IFoodRepository{
         await this.repository.delete(id);
 
     }
+
+    async changePrice(id: string, newPrice: string): Promise<void> {
+         await this.repository.update( id, {price: newPrice })
+       
+
+    }
 }
 
 export { FoodRepository };
